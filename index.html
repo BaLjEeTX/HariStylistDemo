@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e0d0b" />
+    <meta name="description" content="Preyank Limbachiya Salon — Passion in every strand. A house of artistry in Vadodara, Gujarat. Hair, skin, nails and bridal couture under one roof." />
+    <title>Preyank Limbachiya Salon · Passion in Every Strand</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&family=Italiana&family=Dancing+Script:wght@500;600&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <!-- ============================================================
+         CINEMATIC LOADER
+         ============================================================ -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader__rule loader__rule--top"></div>
+        <div class="loader__rule loader__rule--bottom"></div>
+
+        <div class="loader__inner">
+            <!-- inline mark for animated stroke draw -->
+            <svg class="loader__mark" viewBox="0 0 120 80" aria-hidden="true">
+                <g fill="none" stroke="#0e0d0b" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round">
+                    <path class="loader__path" d="M 18 8 L 30 8 L 30 72 L 18 72 Z"/>
+                    <path class="loader__path" d="M 14 8 L 34 8 L 34 12 L 14 12 Z M 13 68 L 35 68 L 35 72 L 13 72 Z"/>
+                    <path class="loader__path" d="M 30 8 L 48 8 C 60 8 66 16 66 26 C 66 36 60 44 48 44 L 30 44 L 30 38 L 46 38 C 54 38 60 34 60 26 C 60 18 54 14 46 14 L 30 14 Z"/>
+                    <path class="loader__path" d="M 78 8 L 90 8 L 90 72 L 78 72 Z"/>
+                    <path class="loader__path" d="M 74 8 L 94 8 L 94 12 L 74 12 Z M 78 64 L 114 64 L 114 72 L 78 72 Z M 110 60 L 116 60 L 116 72 L 110 72 Z"/>
+                </g>
+            </svg>
+
+            <div class="loader__divider"><span></span></div>
+            <p class="loader__brand">P R E Y A N K &nbsp; L I M B A C H I Y A</p>
+            <p class="loader__tag">Passion in every strand</p>
+
+            <div class="loader__progress"><span class="loader__progress-fill"></span></div>
+            <p class="loader__pct"><span id="loaderPct">00</span> <span>—</span> 100</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SCROLL PROGRESS BAR
+         ============================================================ -->
+    <div class="scroll-progress" id="scrollProgress"><span></span></div>
+
+    <!-- ============================================================
+         AMBIENT CURSOR LIGHT
+         ============================================================ -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ============================================================
+         AMBIENT PARTICLES
+         ============================================================ -->
+    <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+
+    <!-- ============================================================
+         NAVIGATION
+         ============================================================ -->
+    <header class="nav" id="nav">
+        <div class="nav__inner">
+            <a class="nav__brand" href="#top" aria-label="Preyank Limbachiya home">
+                <svg class="nav__mark" viewBox="0 0 120 80" aria-hidden="true">
+                    <use href="#nav-mark-symbol"/>
+                </svg>
+                <span class="nav__brand-text">
+                    <span class="nav__brand-name">Preyank Limbachiya</span>
+                    <span class="nav__brand-sub">salon · vadodara</span>
+                </span>
+            </a>
+
+            <nav class="nav__links" aria-label="Primary">
+                <a href="#offers"><span>01</span> Offers</a>
+                <a href="#services"><span>02</span> Services</a>
+                <a href="#master"><span>03</span> The Master</a>
+                <a href="#features"><span>04</span> Experience</a>
+                <a href="#contact"><span>05</span> Visit</a>
+            </nav>
+
+            <a class="nav__cta" href="#contact">
+                <span class="nav__cta-label">Book Appointment</span>
+                <span class="nav__cta-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav__toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- shared SVG symbols -->
+    <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+        <defs>
+            <symbol id="nav-mark-symbol" viewBox="0 0 120 80">
+                <g fill="currentColor">
+                    <path d="M 18 8 L 30 8 L 30 72 L 18 72 Z"/>
+                    <path d="M 14 8 L 34 8 L 34 12 L 14 12 Z"/>
+                    <path d="M 13 68 L 35 68 L 35 72 L 13 72 Z"/>
+                    <path d="M 30 8 L 48 8 C 60 8 66 16 66 26 C 66 36 60 44 48 44 L 30 44 L 30 38 L 46 38 C 54 38 60 34 60 26 C 60 18 54 14 46 14 L 30 14 Z"/>
+                    <path d="M 78 8 L 90 8 L 90 72 L 78 72 Z"/>
+                    <path d="M 74 8 L 94 8 L 94 12 L 74 12 Z"/>
+                    <path d="M 78 64 L 114 64 L 114 72 L 78 72 Z"/>
+                    <path d="M 110 60 L 116 60 L 116 72 L 110 72 Z"/>
+                </g>
+            </symbol>
+        </defs>
+    </svg>
+
+    <main id="top">
+
+        <!-- ============================================================
+             HERO — Editorial Cover
+             ============================================================ -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+            <!-- soft ambient background -->
+            <div class="hero__ambient" aria-hidden="true">
+                <div class="hero__ambient-blur hero__ambient-blur--a"></div>
+                <div class="hero__ambient-blur hero__ambient-blur--b"></div>
+            </div>
+
+            <!-- left edge vertical brand stamp -->
+            <aside class="hero__edge hero__edge--left" aria-hidden="true">
+                <span>Est. Salon</span>
+                <span class="hero__edge-dot">◆</span>
+                <span>Vadodara · Gujarat</span>
+            </aside>
+
+            <!-- right edge vertical stamp -->
+            <aside class="hero__edge hero__edge--right" aria-hidden="true">
+                <span>Volume I</span>
+                <span class="hero__edge-dot">◆</span>
+                <span>Issue · 2026</span>
+            </aside>
+
+            <div class="hero__grid">
+
+                <!-- LEFT: editorial copy -->
+                <div class="hero__copy">
+                    <p class="hero__eyebrow"><span class="hero__eyebrow-line"></span>WE ARE NOW OFFERING</p>
+
+                    <h1 class="hero__title" id="hero-title">
+                        <span class="hero__title-line">Full</span>
+                        <span class="hero__title-line">Beauty</span>
+                        <span class="hero__title-line hero__title-line--script">Services<span class="hero__title-amp">.</span></span>
+                    </h1>
+
+                    <p class="hero__lede">
+                        Expert care. Premium experience.<br/>
+                        <em>All under one roof.</em>
+                    </p>
+
+                    <div class="hero__rule"><span></span></div>
+
+                    <div class="hero__actions">
+                        <a href="#contact" class="btn btn--primary">
+                            <span class="btn__inner">
+                                <span class="btn__label">Book Appointment</span>
+                                <span class="btn__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                </span>
+                            </span>
+                            <span class="btn__sheen" aria-hidden="true"></span>
+                        </a>
+                        <a href="#services" class="btn btn--ghost">
+                            <span class="btn__label">View Services</span>
+                        </a>
+                    </div>
+
+                    <ul class="hero__pillars" aria-label="Salon pillars">
+                        <li><span>10+</span> Yrs Craft</li>
+                        <li><span>4K+</span> Clients</li>
+                        <li><span>4.9</span> Rating</li>
+                    </ul>
+                </div>
+
+                <!-- CENTER/RIGHT: monogram + 3D scene -->
+                <div class="hero__stage">
+                    <!-- the monogram is the centerpiece -->
+                    <figure class="hero__monogram-figure" aria-label="PL monogram">
+                        <object class="hero__monogram-svg" type="image/svg+xml" data="assets/monogram.svg" aria-hidden="true"></object>
+                        <figcaption class="hero__brand-stack">
+                            <span class="hero__brand-name">PREYANK LIMBACHIYA</span>
+                            <span class="hero__brand-divider">
+                                <span></span>SALON<span></span>
+                            </span>
+                            <span class="hero__brand-tag">— passion in every strand —</span>
+                        </figcaption>
+                    </figure>
+
+                    <!-- 3D scene as background ambient -->
+                    <div class="hero__scene" id="heroScene" aria-hidden="true">
+                        <canvas id="three-canvas"></canvas>
+                        <div class="hero__scene-glow"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- footer rail of hero -->
+            <div class="hero__footrail">
+                <div class="hero__scroll">
+                    <span>SCROLL TO EXPLORE</span>
+                    <div class="hero__scroll-line"></div>
+                </div>
+                <div class="hero__time" id="heroTime">--:--</div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             MARQUEE
+             ============================================================ -->
+        <section class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <div class="marquee__group">
+                    <span>Passion in every strand</span><span class="marquee__star">✦</span>
+                    <span>Hair couture</span><span class="marquee__star">✦</span>
+                    <span>Skin rituals</span><span class="marquee__star">✦</span>
+                    <span>Nail artistry</span><span class="marquee__star">✦</span>
+                    <span>Bridal & occasion</span><span class="marquee__star">✦</span>
+                    <span>Master craft, Vadodara</span><span class="marquee__star">✦</span>
+                </div>
+                <div class="marquee__group" aria-hidden="true">
+                    <span>Passion in every strand</span><span class="marquee__star">✦</span>
+                    <span>Hair couture</span><span class="marquee__star">✦</span>
+                    <span>Skin rituals</span><span class="marquee__star">✦</span>
+                    <span>Nail artistry</span><span class="marquee__star">✦</span>
+                    <span>Bridal & occasion</span><span class="marquee__star">✦</span>
+                    <span>Master craft, Vadodara</span><span class="marquee__star">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             OFFERS / COMBOS
+             ============================================================ -->
+        <section class="offers" id="offers" aria-labelledby="offers-title">
+            <header class="section-head reveal">
+                <div class="section-meta">
+                    <span class="section-meta-num">— 01 —</span>
+                    <span class="section-meta-label">Introductory combos</span>
+                </div>
+                <h2 class="section-title" id="offers-title">
+                    Curated indulgence,<br/>
+                    <em>for the modern soul.</em>
+                </h2>
+                <p class="section-lede">Three signature combos to begin your ritual at the house of Preyank Limbachiya — limited introductory pricing.</p>
+            </header>
+
+            <div class="combos">
+
+                <article class="combo reveal-card" data-card="1">
+                    <header class="combo__head">
+                        <span class="combo__num">01</span>
+                        <span class="combo__chip">Combo I</span>
+                    </header>
+
+                    <div class="combo__media">
+                        <svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <circle cx="50" cy="60" r="26"/>
+                            <circle cx="100" cy="60" r="26"/>
+                            <circle cx="150" cy="60" r="26"/>
+                            <path d="M40 52c4-6 12-10 20-6M90 50c4-6 14-8 20-3M140 52c5-6 14-8 20-3"/>
+                            <circle cx="46" cy="60" r="1.4" fill="currentColor"/><circle cx="54" cy="60" r="1.4" fill="currentColor"/>
+                            <circle cx="96" cy="60" r="1.4" fill="currentColor"/><circle cx="104" cy="60" r="1.4" fill="currentColor"/>
+                            <circle cx="146" cy="60" r="1.4" fill="currentColor"/><circle cx="154" cy="60" r="1.4" fill="currentColor"/>
+                            <path d="M44 68c4 4 8 4 12 0M94 68c4 4 8 4 12 0M144 68c4 4 8 4 12 0"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="combo__title">Cleanup · Manicure<br/>Pedicure · Hair Spa</h3>
+                    <p class="combo__desc">A four-part ritual for face, hands, feet, and strands. Worth ₹3000.</p>
+
+                    <div class="combo__price">
+                        <span class="combo__price-strike">₹3000</span>
+                        <span class="combo__price-now" data-target="1999">₹0</span>
+                    </div>
+
+                    <a href="#contact" class="combo__cta">
+                        <span>Reserve combo</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </article>
+
+                <article class="combo combo--featured reveal-card" data-card="2">
+                    <header class="combo__head">
+                        <span class="combo__num">02</span>
+                        <span class="combo__chip">Combo II</span>
+                    </header>
+
+                    <div class="combo__media">
+                        <svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <path d="M70 20 q14 14 10 38 q-4 22 4 42 q3 10 -2 18"/>
+                            <path d="M130 20 q-14 14 -10 38 q4 22 -4 42 q-3 10 2 18"/>
+                            <path d="M80 50 h40 M78 70 h44 M80 90 h40"/>
+                            <circle cx="100" cy="14" r="6"/>
+                            <circle cx="100" cy="116" r="4"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="combo__title">Full Body Wax</h3>
+                    <p class="combo__desc">Silk-finish full body wax with calming after-care. Worth ₹2000.</p>
+
+                    <div class="combo__price">
+                        <span class="combo__price-strike">₹2000</span>
+                        <span class="combo__price-now" data-target="1499">₹0</span>
+                    </div>
+
+                    <a href="#contact" class="combo__cta">
+                        <span>Reserve combo</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </article>
+
+                <article class="combo reveal-card" data-card="3">
+                    <header class="combo__head">
+                        <span class="combo__num">03</span>
+                        <span class="combo__chip">Combo III</span>
+                    </header>
+
+                    <div class="combo__media">
+                        <svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <ellipse cx="100" cy="60" rx="34" ry="44"/>
+                            <path d="M68 44 q32 -28 64 0"/>
+                            <circle cx="92" cy="60" r="1.6" fill="currentColor"/>
+                            <circle cx="108" cy="60" r="1.6" fill="currentColor"/>
+                            <path d="M92 78 q8 6 16 0"/>
+                            <path d="M150 24 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3 z" fill="currentColor" opacity=".7"/>
+                            <path d="M40 70 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 z" fill="currentColor" opacity=".7"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="combo__title">Face · Neck · D-Tan<br/>Hairwash & Blow-Dry</h3>
+                    <p class="combo__desc">A radiant studio finish for face, neck, hands, and hair. Worth ₹1650.</p>
+
+                    <div class="combo__price">
+                        <span class="combo__price-strike">₹1650</span>
+                        <span class="combo__price-now" data-target="1199">₹0</span>
+                    </div>
+
+                    <a href="#contact" class="combo__cta">
+                        <span>Reserve combo</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             MASTER / FOUNDER
+             ============================================================ -->
+        <section class="master" id="master" aria-labelledby="master-title">
+            <div class="master__grid">
+
+                <div class="master__media reveal">
+                    <div class="master__monogram">
+                        <object type="image/svg+xml" data="assets/monogram.svg" aria-hidden="true"></object>
+                        <div class="master__monogram-frame"></div>
+                    </div>
+                    <p class="master__caption">
+                        <span class="master__caption-dash">—</span>
+                        Preyank Limbachiya · Founder & Master Stylist
+                    </p>
+                </div>
+
+                <div class="master__copy reveal">
+                    <div class="section-meta">
+                        <span class="section-meta-num">— 02 —</span>
+                        <span class="section-meta-label">The Master</span>
+                    </div>
+                    <h2 class="section-title" id="master-title">
+                        A decade<br/>
+                        <em>of strands,</em><br/>
+                        of stories.
+                    </h2>
+
+                    <p class="master__lede">
+                        Born of an obsession with the craft, Preyank Limbachiya brings ten
+                        years of mastery to every chair he stands behind. A house built on
+                        precision, patience and the quiet pursuit of perfection.
+                    </p>
+
+                    <ul class="master__stats">
+                        <li>
+                            <span class="master__stats-num" data-target="10">0</span>
+                            <span class="master__stats-suffix">+</span>
+                            <span class="master__stats-label">Years of craft</span>
+                        </li>
+                        <li>
+                            <span class="master__stats-num" data-target="4200">0</span>
+                            <span class="master__stats-suffix">+</span>
+                            <span class="master__stats-label">Strands tended</span>
+                        </li>
+                        <li>
+                            <span class="master__stats-num" data-target="48">0</span>
+                            <span class="master__stats-suffix"></span>
+                            <span class="master__stats-label">Bridal stories</span>
+                        </li>
+                    </ul>
+
+                    <blockquote class="master__quote">
+                        <span class="master__quote-mark">"</span>
+                        Every chair tells a story.<br/>
+                        I'm only here to listen, and then to give it shape.
+                        <cite>— Preyank Limbachiya</cite>
+                    </blockquote>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SERVICES MENU
+             ============================================================ -->
+        <section class="services" id="services" aria-labelledby="services-title">
+            <header class="section-head section-head--left reveal">
+                <div class="section-meta">
+                    <span class="section-meta-num">— 03 —</span>
+                    <span class="section-meta-label">The signature menu</span>
+                </div>
+                <h2 class="section-title" id="services-title">A sanctuary of <em>beauty</em></h2>
+                <p class="section-lede">
+                    From the precise cut to the bridal hour — a curated menu of rituals,
+                    each tailored to the soul who sits down.
+                </p>
+            </header>
+
+            <ul class="menu" role="list">
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">01</span>
+                    <h3 class="menu__name">Hair Couture</h3>
+                    <p class="menu__desc">Precision cuts · balayage · keratin · scalp & strand rituals.</p>
+                    <span class="menu__price">from <em>₹899</em></span>
+                </li>
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">02</span>
+                    <h3 class="menu__name">Skin &amp; Glow</h3>
+                    <p class="menu__desc">Bespoke facials · D-tan · brightening · hydra-glow rituals.</p>
+                    <span class="menu__price">from <em>₹699</em></span>
+                </li>
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">03</span>
+                    <h3 class="menu__name">Nail Artistry</h3>
+                    <p class="menu__desc">Luxury mani &amp; pedi · gel · chrome · editorial nail couture.</p>
+                    <span class="menu__price">from <em>₹499</em></span>
+                </li>
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">04</span>
+                    <h3 class="menu__name">Bridal &amp; Occasion</h3>
+                    <p class="menu__desc">Curated bridal packages · hair, skin &amp; editorial makeup.</p>
+                    <span class="menu__price">on <em>request</em></span>
+                </li>
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">05</span>
+                    <h3 class="menu__name">Body Rituals</h3>
+                    <p class="menu__desc">Full body wax · polishing therapies · silken finish.</p>
+                    <span class="menu__price">from <em>₹999</em></span>
+                </li>
+                <li class="menu__row reveal-row">
+                    <span class="menu__num">06</span>
+                    <h3 class="menu__name">Grooming for Men</h3>
+                    <p class="menu__desc">Classic cuts · beard sculpting · clean-up &amp; styling.</p>
+                    <span class="menu__price">from <em>₹599</em></span>
+                </li>
+            </ul>
+
+            <div class="services__foot">
+                <a href="#contact" class="link-arrow">
+                    <span>Full price list on request</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             FEATURES — Four Pillars
+             ============================================================ -->
+        <section class="features" id="features" aria-labelledby="features-title">
+            <header class="section-head reveal">
+                <div class="section-meta"><span class="section-meta-num">— 04 —</span><span class="section-meta-label">The experience</span></div>
+                <h2 class="section-title" id="features-title">Four pillars, <em>one promise.</em></h2>
+            </header>
+
+            <div class="pillars">
+                <article class="pillar reveal-feature">
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <path d="M32 8 L38 24 L54 26 L42 38 L46 54 L32 46 L18 54 L22 38 L10 26 L26 24 Z"/>
+                        </svg>
+                    </div>
+                    <p class="pillar__num">i.</p>
+                    <h3 class="pillar__title">Premium<br/>Experience</h3>
+                    <p class="pillar__desc">Every detail considered, every minute earned.</p>
+                </article>
+
+                <article class="pillar reveal-feature">
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <path d="M32 12 c-9 8 -16 16 -16 26 a16 16 0 0 0 32 0 c0 -10 -7 -18 -16 -26 z"/>
+                            <path d="M32 26 v22"/>
+                        </svg>
+                    </div>
+                    <p class="pillar__num">ii.</p>
+                    <h3 class="pillar__title">Quality<br/>Products</h3>
+                    <p class="pillar__desc">Only the finest — globally sourced, gently used.</p>
+                </article>
+
+                <article class="pillar reveal-feature">
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <circle cx="32" cy="22" r="9"/>
+                            <path d="M14 52 c0 -10 8 -16 18 -16 s18 6 18 16"/>
+                            <path d="M22 16 l-3 -5 M42 16 l3 -5 M14 32 l-5 -2 M50 32 l5 -2"/>
+                        </svg>
+                    </div>
+                    <p class="pillar__num">iii.</p>
+                    <h3 class="pillar__title">Expert<br/>Professionals</h3>
+                    <p class="pillar__desc">A small team. A long tenure. A patient hand.</p>
+                </article>
+
+                <article class="pillar reveal-feature">
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.1">
+                            <path d="M32 8 L52 16 V32 c0 14 -10 22 -20 24 c-10 -2 -20 -10 -20 -24 V16 Z"/>
+                            <path d="M22 32 l8 8 l14 -14"/>
+                        </svg>
+                    </div>
+                    <p class="pillar__num">iv.</p>
+                    <h3 class="pillar__title">Hygienic<br/>&amp; Safe</h3>
+                    <p class="pillar__desc">Sterilised tools, single-use essentials, clean air.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             TESTIMONIALS
+             ============================================================ -->
+        <section class="testimonials" aria-labelledby="testimonials-title">
+            <header class="section-head reveal">
+                <div class="section-meta"><span class="section-meta-num">— 05 —</span><span class="section-meta-label">Words from the chair</span></div>
+                <h2 class="section-title" id="testimonials-title">Stories <em>told softly.</em></h2>
+            </header>
+
+            <div class="quotes reveal">
+                <figure class="quote">
+                    <blockquote>
+                        A house of artistry where every strand,<br/>
+                        every detail, is touched with quiet care.
+                    </blockquote>
+                    <figcaption>— Aanya R. · Bride, 2025</figcaption>
+                </figure>
+
+                <figure class="quote">
+                    <blockquote>
+                        I walked in tired and walked out luminous.<br/>
+                        Preyank has a magician's hand.
+                    </blockquote>
+                    <figcaption>— Megha S. · Regular guest</figcaption>
+                </figure>
+
+                <figure class="quote">
+                    <blockquote>
+                        Five stars feels too few. The space, the people,<br/>
+                        the craft — every inch is luxury.
+                    </blockquote>
+                    <figcaption>— Devansh P. · Vadodara</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTACT / BOOKING
+             ============================================================ -->
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <header class="section-head reveal">
+                <div class="section-meta"><span class="section-meta-num">— 06 —</span><span class="section-meta-label">Visit the salon</span></div>
+                <h2 class="section-title" id="contact-title">Begin your <em>ritual.</em></h2>
+                <p class="section-lede">Walk-ins are welcome. Appointments are recommended for the full experience.</p>
+            </header>
+
+            <div class="contact__grid reveal">
+                <a href="tel:7405500108" class="contact-card contact-card--primary">
+                    <div class="contact-card__head">
+                        <span class="contact-card__num">01</span>
+                        <span class="contact-card__label">Telephone</span>
+                    </div>
+                    <p class="contact-card__value">7405 500 108</p>
+                    <p class="contact-card__sub">Tap to call</p>
+                    <div class="contact-card__arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </div>
+                </a>
+
+                <div class="contact-card">
+                    <div class="contact-card__head">
+                        <span class="contact-card__num">02</span>
+                        <span class="contact-card__label">The Address</span>
+                    </div>
+                    <p class="contact-card__value">Preyank Limbachiya Salon</p>
+                    <p class="contact-card__sub">Vadodara, Gujarat · India</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card__head">
+                        <span class="contact-card__num">03</span>
+                        <span class="contact-card__label">Hours</span>
+                    </div>
+                    <p class="contact-card__value">10 AM &mdash; 9 PM</p>
+                    <p class="contact-card__sub">Open daily · Sun · Mon · Tue · Wed · Thu · Fri · Sat</p>
+                </div>
+            </div>
+
+            <div class="contact__cta reveal">
+                <a href="tel:7405500108" class="btn btn--primary btn--lg">
+                    <span class="btn__inner">
+                        <span class="btn__label">Call &amp; book now</span>
+                        <span class="btn__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </span>
+                    </span>
+                    <span class="btn__sheen" aria-hidden="true"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             FOOTER
+             ============================================================ -->
+        <footer class="footer">
+            <div class="footer__monogram">
+                <object type="image/svg+xml" data="assets/monogram.svg" aria-hidden="true"></object>
+            </div>
+
+            <div class="footer__grid">
+                <div class="footer__col footer__col--brand">
+                    <p class="footer__brand-name">PREYANK LIMBACHIYA</p>
+                    <p class="footer__brand-sub">— S A L O N —</p>
+                    <p class="footer__tag">Passion in every strand</p>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Visit</h4>
+                    <p>Vadodara, Gujarat<br/>India</p>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Reach</h4>
+                    <p><a href="tel:7405500108">7405 500 108</a></p>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Hours</h4>
+                    <p>Open daily<br/>10 AM &mdash; 9 PM</p>
+                </div>
+
+                <div class="footer__col">
+                    <h4>Follow</h4>
+                    <p><a href="#" aria-label="Instagram">Instagram</a><br/><a href="#" aria-label="Facebook">Facebook</a></p>
+                </div>
+            </div>
+
+            <div class="footer__rule"></div>
+
+            <div class="footer__bottom">
+                <p>© 2026 Preyank Limbachiya Salon. All rights reserved.</p>
+                <a href="#top" class="footer__top">
+                    <span>Back to top</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ============================================================
+         STICKY CONTACT BAR
+         ============================================================ -->
+    <aside class="sticky" id="sticky" aria-label="Quick contact">
+        <a href="tel:7405500108" class="sticky__call">
+            <span class="sticky__icon-container">
+                <span class="sticky__ring" aria-hidden="true"></span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span class="sticky__call-text">7405 500 108</span>
+        </a>
+        <span class="sticky__divider"></span>
+        <span class="sticky__loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Vadodara, Gujarat
+        </span>
+        <a href="#contact" class="sticky__book">Book</a>
+    </aside>
+
+    <!-- ============================================================
+         MOBILE FULLSCREEN MENU OVERLAY
+         ============================================================ -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu__inner">
+            <nav class="mobile-menu__links" aria-label="Mobile">
+                <a href="#offers"><span>01</span> Offers</a>
+                <a href="#services"><span>02</span> Services</a>
+                <a href="#master"><span>03</span> The Master</a>
+                <a href="#features"><span>04</span> Experience</a>
+                <a href="#contact"><span>05</span> Visit</a>
+            </nav>
+            <div class="mobile-menu__footer">
+                <p class="mobile-menu__brand">PREYANK LIMBACHIYA</p>
+                <p class="mobile-menu__tag">passion in every strand</p>
+                <a href="tel:7405500108" class="mobile-menu__cta">7405 500 108</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/three-scene.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

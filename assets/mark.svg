@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" role="img" aria-label="PL mark">
+    <g fill="currentColor">
+        <!-- P -->
+        <path d="M 18 8 L 30 8 L 30 72 L 18 72 Z"/>
+        <path d="M 14 8 L 34 8 L 34 12 L 14 12 Z"/>
+        <path d="M 13 68 L 35 68 L 35 72 L 13 72 Z"/>
+        <path d="M 30 8 L 48 8 C 60 8 66 16 66 26 C 66 36 60 44 48 44 L 30 44 L 30 38 L 46 38 C 54 38 60 34 60 26 C 60 18 54 14 46 14 L 30 14 Z"/>
+        <!-- L -->
+        <path d="M 78 8 L 90 8 L 90 72 L 78 72 Z"/>
+        <path d="M 74 8 L 94 8 L 94 12 L 74 12 Z"/>
+        <path d="M 78 64 L 114 64 L 114 72 L 78 72 Z"/>
+        <path d="M 110 60 L 116 60 L 116 72 L 110 72 Z"/>
+    </g>
+</svg>

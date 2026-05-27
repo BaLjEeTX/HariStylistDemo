@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" role="img" aria-label="Preyank Limbachiya monogram">
+    <defs>
+        <!-- subtle inner sheen -->
+        <linearGradient id="ink" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#1c1a17"/>
+            <stop offset="55%" stop-color="#0e0d0b"/>
+            <stop offset="100%" stop-color="#000000"/>
+        </linearGradient>
+        <!-- highlight along the silhouette edge -->
+        <linearGradient id="edge" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#3a3530" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#5a4f42" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#3a3530" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <!-- ============ Letter P ============ -->
+    <g fill="url(#ink)">
+        <!-- vertical stem of P -->
+        <path d="M 92 78
+                 L 152 78
+                 L 152 612
+                 L 92 612 Z"/>
+        <!-- left serif of P (top) -->
+        <path d="M 72 78
+                 L 172 78
+                 L 172 102
+                 L 72 102 Z"/>
+        <!-- base serif of P -->
+        <path d="M 68 588
+                 L 176 588
+                 L 176 612
+                 L 68 612 Z"/>
+        <!-- bowl of P (top half loop) -->
+        <path d="M 152 78
+                 L 252 78
+                 C 332 78 376 124 376 198
+                 C 376 268 332 312 252 312
+                 L 152 312
+                 L 152 286
+                 L 240 286
+                 C 304 286 332 254 332 198
+                 C 332 138 304 104 240 104
+                 L 152 104 Z"/>
+    </g>
+
+    <!-- ============ Letter L ============ -->
+    <g fill="url(#ink)">
+        <!-- vertical stem of L -->
+        <path d="M 358 78
+                 L 418 78
+                 L 418 612
+                 L 358 612 Z"/>
+        <!-- top serif of L -->
+        <path d="M 338 78
+                 L 438 78
+                 L 438 102
+                 L 338 102 Z"/>
+        <!-- bottom horizontal of L -->
+        <path d="M 358 562
+                 L 538 562
+                 L 538 612
+                 L 358 612 Z"/>
+        <!-- right serif tail of L -->
+        <path d="M 524 540
+                 L 548 540
+                 L 548 612
+                 L 524 612 Z"/>
+    </g>
+
+    <!-- ============ Silhouette of master (within letters) ============ -->
+    <!-- Sits between P bowl and L stem, in the negative space + overlapping -->
+    <g fill="#0a0907">
+
+        <!-- Hair — voluminous, swept back with a slight wave above the brow -->
+        <path d="M 198 168
+                 C 188 152 192 138 210 124
+                 C 224 114 244 110 264 114
+                 C 286 118 308 130 326 148
+                 C 344 166 356 188 362 212
+                 C 366 226 366 240 360 252
+                 C 354 248 348 244 342 240
+                 C 340 226 336 214 330 204
+                 C 322 192 312 184 302 180
+                 C 296 178 290 178 286 182
+                 C 282 188 280 196 282 206
+                 C 274 196 264 188 254 184
+                 C 240 178 228 180 220 188
+                 C 214 194 212 202 214 210
+                 C 208 204 202 196 200 188
+                 C 198 180 198 174 198 168 Z"/>
+
+        <!-- Forehead + temple -->
+        <path d="M 212 212
+                 C 216 220 222 226 230 230
+                 L 250 232
+                 C 256 232 260 234 262 240
+                 L 264 252
+                 C 264 258 262 264 258 268
+                 L 246 274
+                 C 242 280 244 286 248 290
+                 L 252 292
+                 L 252 308
+                 C 250 314 246 318 240 320
+                 L 228 322
+                 C 222 322 218 326 216 332
+                 L 214 348
+                 C 212 354 208 358 200 358
+                 L 192 358
+                 C 184 354 178 348 174 340
+                 L 170 326
+                 C 168 314 168 302 170 290
+                 L 174 268
+                 C 176 254 180 240 188 228
+                 C 194 220 202 214 212 212 Z"/>
+
+        <!-- Nose ridge + tip -->
+        <path d="M 254 282
+                 C 258 290 262 298 264 308
+                 C 266 316 264 322 260 328
+                 L 254 332
+                 C 248 332 244 328 244 322
+                 C 244 314 246 306 250 298
+                 L 254 282 Z"/>
+
+        <!-- Upper lip / mustache hint -->
+        <path d="M 226 348
+                 C 232 350 240 350 248 348
+                 L 256 346
+                 C 258 350 258 354 254 358
+                 L 240 360
+                 C 232 360 226 358 222 354
+                 C 222 350 224 348 226 348 Z"/>
+
+        <!-- Beard / jaw silhouette — strong masculine jawline -->
+        <path d="M 184 358
+                 C 186 374 192 388 202 398
+                 C 214 410 230 416 248 416
+                 L 268 414
+                 C 282 412 290 416 294 426
+                 L 296 438
+                 C 296 446 292 452 284 456
+                 L 256 462
+                 C 234 466 212 462 194 452
+                 C 178 442 168 426 164 408
+                 L 162 388
+                 C 162 376 168 366 178 360
+                 L 184 358 Z"/>
+
+        <!-- Neck -->
+        <path d="M 248 462
+                 L 248 510
+                 C 248 522 254 530 264 534
+                 L 296 540
+                 C 314 542 326 534 332 520
+                 L 332 462
+                 C 320 466 308 468 296 468
+                 L 268 466
+                 L 248 462 Z"/>
+
+        <!-- Shirt collar — angular suit -->
+        <path d="M 198 530
+                 L 250 528
+                 L 252 552
+                 L 224 568
+                 L 198 560
+                 L 198 530 Z
+                 M 330 528
+                 L 350 528
+                 L 350 568
+                 L 320 568
+                 L 326 540
+                 L 330 528 Z"/>
+
+        <!-- Suit shoulder / outer collar -->
+        <path d="M 178 552
+                 L 256 558
+                 L 258 612
+                 L 178 612
+                 L 178 552 Z
+                 M 322 558
+                 L 372 552
+                 L 372 612
+                 L 322 612
+                 L 322 558 Z"/>
+
+    </g>
+
+    <!-- ============ Glasses (carefully placed over eye area) ============ -->
+    <g fill="none" stroke="#cfb892" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".95">
+        <!-- bridge -->
+        <path d="M 238 268 L 252 268"/>
+        <!-- right circular lens (viewer's view of master) -->
+        <ellipse cx="222" cy="272" rx="20" ry="14"/>
+        <!-- temple arm sweeping back into hair -->
+        <path d="M 202 272 L 184 270"/>
+    </g>
+
+    <!-- subtle edge sheen along jaw to give depth -->
+    <path d="M 184 358 C 186 374 192 388 202 398 C 214 410 230 416 248 416"
+        fill="none" stroke="url(#edge)" stroke-width="1.5" opacity=".4"/>
+
+</svg>
