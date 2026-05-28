@@ -4,6 +4,182 @@
 
 (function(){
 
+    // Helper to return the inline SVG for combo illustration based on string name
+    function getIllustrationSVG(name) {
+        if (name === 'combo-1') {
+            return `<svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                <circle cx="50" cy="60" r="26"/>
+                <circle cx="100" cy="60" r="26"/>
+                <circle cx="150" cy="60" r="26"/>
+                <path d="M40 52c4-6 12-10 20-6M90 50c4-6 14-8 20-3M140 52c5-6 14-8 20-3"/>
+                <circle cx="46" cy="60" r="1.4" fill="currentColor"/><circle cx="54" cy="60" r="1.4" fill="currentColor"/>
+                <circle cx="96" cy="60" r="1.4" fill="currentColor"/><circle cx="104" cy="60" r="1.4" fill="currentColor"/>
+                <circle cx="146" cy="60" r="1.4" fill="currentColor"/><circle cx="154" cy="60" r="1.4" fill="currentColor"/>
+                <path d="M44 68c4 4 8 4 12 0M94 68c4 4 8 4 12 0M144 68c4 4 8 4 12 0"/>
+            </svg>`;
+        }
+        if (name === 'combo-2') {
+            return `<svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                <path d="M70 20 q14 14 10 38 q-4 22 4 42 q3 10 -2 18"/>
+                <path d="M130 20 q-14 14 -10 38 q4 22 -4 42 q-3 10 2 18"/>
+                <path d="M80 50 h40 M78 70 h44 M80 90 h40"/>
+                <circle cx="100" cy="14" r="6"/>
+                <circle cx="100" cy="116" r="4"/>
+            </svg>`;
+        }
+        if (name === 'combo-3') {
+            return `<svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+                <ellipse cx="100" cy="60" rx="34" ry="44"/>
+                <path d="M68 44 q32 -28 64 0"/>
+                <circle cx="92" cy="60" r="1.6" fill="currentColor"/>
+                <circle cx="108" cy="60" r="1.6" fill="currentColor"/>
+                <path d="M92 78 q8 6 16 0"/>
+                <path d="M150 24 l3 6 l6 3 l-6 3 l-3 6 l-3 -6 l-6 -3 l6 -3 z" fill="currentColor" opacity=".7"/>
+                <path d="M40 70 l2 4 l4 2 l-4 2 l-2 4 l-2 -4 l-4 -2 l4 -2 z" fill="currentColor" opacity=".7"/>
+            </svg>`;
+        }
+        return `<svg class="combo__illustration" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.1">
+            <circle cx="100" cy="60" r="26"/>
+        </svg>`;
+    }
+
+    // Apply JSON data dynamically to DOM
+    function applySalonData(data) {
+        try {
+            const phone = data.contact.phone;
+            const phoneRaw = data.contact.phoneRaw;
+            
+            document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                link.href = `tel:${phoneRaw}`;
+                const innerTextEl = link.querySelector('.sticky__call-text, .mobile-menu__cta');
+                if (innerTextEl) {
+                    innerTextEl.textContent = phone;
+                } else if (!link.querySelector('span, svg') && (link.textContent.includes('7405') || link.textContent.trim().match(/^\d/))) {
+                    link.textContent = phone;
+                }
+            });
+            document.querySelectorAll('.sticky__call-text, .contact-card__value').forEach(el => {
+                if (el.textContent.includes('7405') || el.textContent.trim().match(/^\d/)) {
+                    el.textContent = phone;
+                }
+            });
+            
+            document.querySelectorAll('.nav__brand-sub').forEach(el => {
+                if (el.textContent.includes('salon · vadodara')) {
+                    el.textContent = `salon · ${data.contact.addressShort.toLowerCase().split(',')[0].trim()}`;
+                }
+            });
+            document.querySelectorAll('.hero__edge--left span').forEach(el => {
+                if (el.textContent.includes('Vadodara · Gujarat')) {
+                    el.textContent = data.contact.addressShort;
+                }
+            });
+            document.querySelectorAll('.marquee__group span').forEach(el => {
+                if (el.textContent.includes('Master craft, Vadodara')) {
+                    el.textContent = `Master craft, ${data.contact.addressShort.split(',')[0].trim()}`;
+                }
+            });
+            
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach(card => {
+                const label = card.querySelector('.contact-card__label');
+                if (label && label.textContent.includes('The Address')) {
+                    const val = card.querySelector('.contact-card__value');
+                    const sub = card.querySelector('.contact-card__sub');
+                    if (val) val.textContent = data.contact.addressName;
+                    if (sub) sub.textContent = data.contact.addressSub;
+                }
+                if (label && label.textContent.includes('Hours')) {
+                    const val = card.querySelector('.contact-card__value');
+                    const sub = card.querySelector('.contact-card__sub');
+                    if (val) val.innerHTML = data.contact.hours;
+                    if (sub) sub.textContent = data.contact.hoursSub;
+                }
+            });
+            
+            const footerCols = document.querySelectorAll('.footer__col');
+            footerCols.forEach(col => {
+                const h4 = col.querySelector('h4');
+                if (h4 && h4.textContent.includes('Visit')) {
+                    const p = col.querySelector('p');
+                    if (p) {
+                        const addressParts = data.contact.addressSub.split('·');
+                        const mainAddress = data.contact.addressShort;
+                        const country = addressParts[1] ? addressParts[1].trim() : 'India';
+                        p.innerHTML = `${mainAddress}<br/>${country}`;
+                    }
+                }
+                if (h4 && h4.textContent.includes('Hours')) {
+                    const p = col.querySelector('p');
+                    if (p) {
+                        p.innerHTML = `Open daily<br/>${data.contact.hours}`;
+                    }
+                }
+            });
+            
+            const stickyLoc = document.querySelector('.sticky__loc');
+            if (stickyLoc) {
+                const svg = stickyLoc.querySelector('svg');
+                stickyLoc.innerHTML = '';
+                if (svg) stickyLoc.appendChild(svg);
+                stickyLoc.appendChild(document.createTextNode(' ' + data.contact.addressShort));
+            }
+
+            // 2. Build Combos
+            const combosContainer = document.querySelector('.combos');
+            if (combosContainer && data.combos && data.combos.length > 0) {
+                combosContainer.innerHTML = '';
+                data.combos.forEach((combo, idx) => {
+                    const featuredClass = combo.featured ? ' combo--featured' : '';
+                    const cardIndex = idx + 1;
+                    const article = document.createElement('article');
+                    article.className = `combo${featuredClass} reveal-card`;
+                    article.setAttribute('data-card', cardIndex);
+                    
+                    article.innerHTML = `
+                        <header class="combo__head">
+                            <span class="combo__num">${combo.num}</span>
+                            <span class="combo__chip">${combo.chip}</span>
+                        </header>
+                        <div class="combo__media">
+                            ${getIllustrationSVG(combo.illustration)}
+                        </div>
+                        <h3 class="combo__title">${combo.title}</h3>
+                        <p class="combo__desc">${combo.desc}</p>
+                        <div class="combo__price">
+                            <span class="combo__price-strike">${combo.priceStrike}</span>
+                            <span class="combo__price-now" data-target="${combo.priceNow}">₹0</span>
+                        </div>
+                        <a href="#contact" class="combo__cta">
+                            <span>Reserve combo</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    `;
+                    combosContainer.appendChild(article);
+                });
+            }
+
+            // 3. Build Services Menu
+            const menuContainer = document.querySelector('.menu');
+            if (menuContainer && data.services && data.services.length > 0) {
+                menuContainer.innerHTML = '';
+                data.services.forEach(service => {
+                    const li = document.createElement('li');
+                    li.className = 'menu__row reveal-row';
+                    li.innerHTML = `
+                        <span class="menu__num">${service.num}</span>
+                        <h3 class="menu__name">${service.name}</h3>
+                        <p class="menu__desc">${service.desc}</p>
+                        <span class="menu__price">${service.price}</span>
+                    `;
+                    menuContainer.appendChild(li);
+                });
+            }
+        } catch (e) {
+            console.error('Error applying salon data:', e);
+        }
+    }
+
     /* ---------- Loader (robust) ----------
        Hide on whichever fires first:
        DOMContentLoaded, window load, or a hard 2.2s safety timeout.
@@ -40,6 +216,12 @@
                 .forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
         }
     }
+
+    // Fetch JSON data immediately
+    fetch('salon-data.json')
+        .then(res => res.json())
+        .then(data => applySalonData(data))
+        .catch(err => console.warn('Failed to load salon data JSON, falling back to static HTML.', err));
 
     // Loader count-up progress animation
     const pctEl = document.getElementById('loaderPct');
@@ -82,11 +264,21 @@
         }
         loop();
 
-        // scale on interactive elements
-        const targets = document.querySelectorAll('a, .btn, .combo, .contact-card, .menu__row, .pillar');
-        targets.forEach(t => {
-            t.addEventListener('mouseenter', () => glow.style.width = glow.style.height = '520px');
-            t.addEventListener('mouseleave', () => glow.style.width = glow.style.height = '380px');
+        // Event delegation for cursor glow scale
+        let activeInteractive = null;
+        document.body.addEventListener('mouseover', (e) => {
+            const target = e.target.closest('a, .btn, .combo, .contact-card, .menu__row, .pillar');
+            if (target && target !== activeInteractive) {
+                activeInteractive = target;
+                glow.style.width = glow.style.height = '520px';
+            }
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            const target = e.target.closest('a, .btn, .combo, .contact-card, .menu__row, .pillar');
+            if (target && e.relatedTarget && !target.contains(e.relatedTarget)) {
+                activeInteractive = null;
+                glow.style.width = glow.style.height = '380px';
+            }
         });
     }
 
@@ -174,18 +366,19 @@
     }
 
     /* ---------- Smooth anchor easing ---------- */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', (e) => {
+    document.body.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (a) {
             const id = a.getAttribute('href');
-            if(id.length > 1){
+            if (id.length > 1) {
                 const target = document.querySelector(id);
-                if(target){
+                if (target) {
                     e.preventDefault();
                     const top = target.getBoundingClientRect().top + window.scrollY - 60;
                     window.scrollTo({ top, behavior: 'smooth' });
                 }
             }
-        });
+        }
     });
 
     /* ---------- Mobile Menu Toggle ---------- */

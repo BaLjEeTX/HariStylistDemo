@@ -1,0 +1,83 @@
+{
+  "contact": {
+    "phone": "7405 500 108",
+    "phoneRaw": "7405500108",
+    "addressName": "Preyank Limbachiya Salon",
+    "addressSub": "Vadodara, Gujarat · India",
+    "addressShort": "Vadodara, Gujarat",
+    "hours": "10 AM — 9 PM",
+    "hoursSub": "Open daily · Sun · Mon · Tue · Wed · Thu · Fri · Sat",
+    "social": {
+      "instagram": "#",
+      "facebook": "#"
+    }
+  },
+  "combos": [
+    {
+      "num": "01",
+      "chip": "Combo I",
+      "illustration": "combo-1",
+      "title": "Cleanup · Manicure<br/>Pedicure · Hair Spa",
+      "desc": "A four-part ritual for face, hands, feet, and strands. Worth ₹3000.",
+      "priceStrike": "₹3000",
+      "priceNow": 1999
+    },
+    {
+      "num": "02",
+      "chip": "Combo II",
+      "featured": true,
+      "illustration": "combo-2",
+      "title": "Full Body Wax",
+      "desc": "Silk-finish full body wax with calming after-care. Worth ₹2000.",
+      "priceStrike": "₹2000",
+      "priceNow": 1499
+    },
+    {
+      "num": "03",
+      "chip": "Combo III",
+      "illustration": "combo-3",
+      "title": "Face · Neck · D-Tan<br/>Hairwash & Blow-Dry",
+      "desc": "A radiant studio finish for face, neck, hands, and hair. Worth ₹1650.",
+      "priceStrike": "₹1650",
+      "priceNow": 1199
+    }
+  ],
+  "services": [
+    {
+      "num": "01",
+      "name": "Hair Couture",
+      "desc": "Precision cuts · balayage · keratin · scalp & strand rituals.",
+      "price": "from <em>₹899</em>"
+    },
+    {
+      "num": "02",
+      "name": "Skin & Glow",
+      "desc": "Bespoke facials · D-tan · brightening · hydra-glow rituals.",
+      "price": "from <em>₹699</em>"
+    },
+    {
+      "num": "03",
+      "name": "Nail Artistry",
+      "desc": "Luxury mani & pedi · gel · chrome · editorial nail couture.",
+      "price": "from <em>₹499</em>"
+    },
+    {
+      "num": "04",
+      "name": "Bridal & Occasion",
+      "desc": "Curated bridal packages · hair, skin & editorial makeup.",
+      "price": "on <em>request</em>"
+    },
+    {
+      "num": "05",
+      "name": "Body Rituals",
+      "desc": "Full body wax · polishing therapies · silken finish.",
+      "price": "from <em>₹999</em>"
+    },
+    {
+      "num": "06",
+      "name": "Grooming for Men",
+      "desc": "Classic cuts · beard sculpting · clean-up & styling.",
+      "price": "from <em>₹599</em>"
+    }
+  ]
+}
