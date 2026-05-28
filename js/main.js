@@ -48,6 +48,47 @@
         try {
             const phone = data.contact.phone;
             const phoneRaw = data.contact.phoneRaw;
+            const whatsappPhone = data.contact.whatsappPhone || '917405500108';
+            const defaultMsg = encodeURIComponent("Hello! I would like to book an appointment.");
+            const defaultWAUrl = `https://wa.me/${whatsappPhone}?text=${defaultMsg}`;
+            
+            // Header Book Appointment
+            const navCta = document.querySelector('.nav__cta');
+            if (navCta) {
+                navCta.href = defaultWAUrl;
+                navCta.setAttribute('target', '_blank');
+                navCta.setAttribute('rel', 'noopener');
+            }
+            
+            // Hero Book Appointment
+            const heroCta = document.querySelector('.hero__actions .btn--primary');
+            if (heroCta) {
+                heroCta.href = defaultWAUrl;
+                heroCta.setAttribute('target', '_blank');
+                heroCta.setAttribute('rel', 'noopener');
+            }
+            
+            // Sticky Book Button
+            const stickyBook = document.querySelector('.sticky__book');
+            if (stickyBook) {
+                stickyBook.href = defaultWAUrl;
+                stickyBook.setAttribute('target', '_blank');
+                stickyBook.setAttribute('rel', 'noopener');
+            }
+
+            // Contact section main booking button
+            const contactCtaLink = document.querySelector('.contact__cta a');
+            if (contactCtaLink) {
+                contactCtaLink.href = defaultWAUrl;
+                contactCtaLink.setAttribute('target', '_blank');
+                contactCtaLink.setAttribute('rel', 'noopener');
+                const label = contactCtaLink.querySelector('.btn__label');
+                if (label) label.textContent = 'Book via WhatsApp';
+                const icon = contactCtaLink.querySelector('.btn__icon');
+                if (icon) {
+                    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.458L0 24zm6.26-3.864c1.623.963 3.327 1.488 5.679 1.489 5.376.002 9.752-4.37 9.756-9.743.002-2.602-1.01-5.05-2.85-6.892-1.839-1.842-4.288-2.857-6.89-2.859-5.38.001-9.758 4.373-9.761 9.748-.002 2.072.54 4.095 1.572 5.881L2.83 21.13l3.487-.914zm12.352-6.853c-.302-.15-1.786-.882-2.057-.98-.27-.099-.467-.148-.663.15-.197.297-.762.98-.934 1.18-.172.2-.344.224-.646.075-.302-.15-1.272-.469-2.423-1.496-.895-.798-1.5-1.784-1.676-2.084-.176-.301-.019-.463.132-.612.136-.134.302-.35.453-.525.15-.174.2-.299.3-.499.1-.2.05-.375-.025-.525-.075-.15-.663-1.597-.909-2.193-.24-.577-.482-.499-.663-.508-.172-.008-.37-.01-.567-.01-.197 0-.518.074-.79.37-.27.296-1.03 1.007-1.03 2.456 0 1.448 1.054 2.846 1.202 3.044.148.198 2.075 3.168 5.027 4.444.702.304 1.251.486 1.677.621.705.224 1.348.193 1.856.117.567-.085 1.786-.73 2.033-1.433.246-.703.246-1.306.172-1.433-.074-.127-.27-.201-.572-.351z"/></svg>`;
+                }
+            }
             
             document.querySelectorAll('a[href^="tel:"]').forEach(link => {
                 link.href = `tel:${phoneRaw}`;
@@ -136,6 +177,9 @@
                     article.className = `combo${featuredClass} reveal-card`;
                     article.setAttribute('data-card', cardIndex);
                     
+                    const comboMsg = encodeURIComponent(`Hello! I would like to reserve ${combo.chip} (${combo.title.replace(/<br\/?>/g, ' · ')}) for ₹${combo.priceNow}.`);
+                    const comboWAUrl = `https://wa.me/${whatsappPhone}?text=${comboMsg}`;
+                    
                     article.innerHTML = `
                         <header class="combo__head">
                             <span class="combo__num">${combo.num}</span>
@@ -150,7 +194,7 @@
                             <span class="combo__price-strike">${combo.priceStrike}</span>
                             <span class="combo__price-now" data-target="${combo.priceNow}">₹0</span>
                         </div>
-                        <a href="#contact" class="combo__cta">
+                        <a href="${comboWAUrl}" class="combo__cta" target="_blank" rel="noopener">
                             <span>Reserve combo</span>
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         </a>
