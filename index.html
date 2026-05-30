@@ -433,24 +433,15 @@
                 </p>
             </header>
 
-            <div class="services__tabs reveal" id="servicesTabs">
-                <!-- Tabs will be dynamically rendered here -->
+            <div class="services__gender-toggle reveal" id="servicesGenderToggle">
+                <button class="gender-btn active" data-gender="female" type="button">Women's Couture</button>
+                <span class="gender-separator">/</span>
+                <button class="gender-btn" data-gender="male" type="button">Men's Grooming</button>
             </div>
 
-            <div class="services__grid reveal">
-                <div class="services__col services__col--female">
-                    <h3 class="services__col-title">Women's Couture</h3>
-                    <ul class="menu menu--female" role="list">
-                        <!-- dynamic women services -->
-                    </ul>
-                </div>
-                <div class="services__col services__col--male">
-                    <h3 class="services__col-title">Men's Grooming</h3>
-                    <ul class="menu menu--male" role="list">
-                        <!-- dynamic men services -->
-                    </ul>
-                </div>
-            </div>
+            <ul class="menu" id="servicesMenu" role="list">
+                <!-- dynamic booklet menu -->
+            </ul>
 
             <div class="services__foot">
                 <a href="#contact" class="link-arrow">

@@ -228,104 +228,74 @@
                 });
             }
 
-            // 3. Build Services Menu (Tabbed Category Switcher)
-            const femaleMenu = document.querySelector('.menu--female');
-            const maleMenu = document.querySelector('.menu--male');
-            const femaleCol = document.querySelector('.services__col--female');
-            const maleCol = document.querySelector('.services__col--male');
-            const grid = document.querySelector('.services__grid');
-            const tabsContainer = document.getElementById('servicesTabs');
+            // 3. Build Services Menu (Gender-Based Booklet Switcher)
+            const servicesMenu = document.getElementById('servicesMenu');
+            const genderToggle = document.getElementById('servicesGenderToggle');
             
-            if (femaleMenu && maleMenu && data.services) {
-                // Get unique categories from data
-                const categories = [...new Set(data.services.map(s => s.category ? s.category.toLowerCase() : 'hair'))];
-                const categoryOrder = ['hair', 'skin', 'nails', 'grooming'];
-                categories.sort((a, b) => {
-                    const idxA = categoryOrder.indexOf(a);
-                    const idxB = categoryOrder.indexOf(b);
-                    return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
-                });
+            if (servicesMenu && genderToggle && data.services) {
                 
-                // Render category tab buttons
-                if (tabsContainer && categories.length > 0) {
-                    tabsContainer.innerHTML = '';
-                    categories.forEach((cat, index) => {
-                        const btn = document.createElement('button');
-                        btn.className = `services__tab-btn ${index === 0 ? 'active' : ''}`;
-                        btn.setAttribute('data-category', cat);
-                        btn.setAttribute('type', 'button');
-                        
-                        let displayName = cat.charAt(0).toUpperCase() + cat.slice(1);
-                        if (cat === 'grooming') displayName = 'Grooming & Body';
-                        
-                        btn.textContent = displayName;
-                        tabsContainer.appendChild(btn);
+                const renderGenderMenu = (genderName, initial = false) => {
+                    // Filter services by gender
+                    const filteredServices = data.services.filter(s => (s.gender || 'female').toLowerCase() === genderName);
+                    
+                    // Group services by category
+                    const categoryOrder = ['hair', 'skin', 'nails', 'grooming'];
+                    const servicesByCategory = {};
+                    
+                    filteredServices.forEach(service => {
+                        const cat = (service.category || 'hair').toLowerCase();
+                        if (!servicesByCategory[cat]) {
+                            servicesByCategory[cat] = [];
+                        }
+                        servicesByCategory[cat].push(service);
                     });
-                }
-                
-                // Helper to render filtered list items
-                const renderCategoryServices = (catName, initial = false) => {
-                    const filtered = data.services.filter(s => (s.category || 'hair').toLowerCase() === catName);
-                    const femaleServices = filtered.filter(s => (s.gender || 'female').toLowerCase() === 'female');
-                    const maleServices = filtered.filter(s => (s.gender || 'female').toLowerCase() === 'male');
                     
-                    // Toggle column visibilities & adapt grid layout
-                    if (femaleServices.length === 0) {
-                        femaleCol.classList.add('services__col--hidden');
-                    } else {
-                        femaleCol.classList.remove('services__col--hidden');
-                    }
-                    
-                    if (maleServices.length === 0) {
-                        maleCol.classList.add('services__col--hidden');
-                    } else {
-                        maleCol.classList.remove('services__col--hidden');
-                    }
-                    
-                    if (femaleServices.length === 0 || maleServices.length === 0) {
-                        grid.classList.add('services__grid--single');
-                    } else {
-                        grid.classList.remove('services__grid--single');
-                    }
+                    // Get categories sorted by custom order
+                    const sortedCategories = Object.keys(servicesByCategory).sort((a, b) => {
+                        const idxA = categoryOrder.indexOf(a);
+                        const idxB = categoryOrder.indexOf(b);
+                        return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+                    });
                     
                     const doRender = () => {
-                        femaleMenu.innerHTML = '';
-                        maleMenu.innerHTML = '';
+                        servicesMenu.innerHTML = '';
                         
-                        let femaleCount = 1;
-                        let maleCount = 1;
+                        let serviceIndex = 1;
                         
-                        femaleServices.forEach(service => {
-                            const li = document.createElement('li');
-                            li.className = 'menu__row reveal-row';
-                            const numStr = String(femaleCount++).padStart(2, '0');
-                            li.innerHTML = `
-                                <span class="menu__num">${numStr}</span>
-                                <h3 class="menu__name">${service.name}</h3>
-                                <p class="menu__desc">${service.desc}</p>
-                                <span class="menu__price">${service.price}</span>
-                            `;
-                            femaleMenu.appendChild(li);
+                        sortedCategories.forEach(cat => {
+                            const catServices = servicesByCategory[cat];
+                            if (catServices && catServices.length > 0) {
+                                // Add category header row
+                                const headerLi = document.createElement('li');
+                                headerLi.className = 'menu__category-header reveal-row';
+                                
+                                let catTitle = cat.charAt(0).toUpperCase() + cat.slice(1);
+                                if (cat === 'grooming') catTitle = 'Grooming & Body';
+                                
+                                headerLi.innerHTML = `<span>— ${catTitle} —</span>`;
+                                servicesMenu.appendChild(headerLi);
+                                
+                                // Add services in this category
+                                catServices.forEach(service => {
+                                    const li = document.createElement('li');
+                                    li.className = 'menu__row reveal-row';
+                                    const numStr = String(serviceIndex++).padStart(2, '0');
+                                    li.innerHTML = `
+                                        <span class="menu__num">${numStr}</span>
+                                        <h3 class="menu__name">${service.name}</h3>
+                                        <p class="menu__desc">${service.desc}</p>
+                                        <span class="menu__price">${service.price}</span>
+                                    `;
+                                    servicesMenu.appendChild(li);
+                                });
+                            }
                         });
                         
-                        maleServices.forEach(service => {
-                            const li = document.createElement('li');
-                            li.className = 'menu__row reveal-row';
-                            const numStr = String(maleCount++).padStart(2, '0');
-                            li.innerHTML = `
-                                <span class="menu__num">${numStr}</span>
-                                <h3 class="menu__name">${service.name}</h3>
-                                <p class="menu__desc">${service.desc}</p>
-                                <span class="menu__price">${service.price}</span>
-                            `;
-                            maleMenu.appendChild(li);
-                        });
-                        
-                        // Animate in and refresh scroll trigger offsets
+                        // GSAP Entrance animation
                         if (!initial && typeof gsap !== 'undefined') {
-                            gsap.fromTo('.services__grid .menu__row', 
+                            gsap.fromTo('#servicesMenu > li', 
                                 { opacity: 0, y: 15 }, 
-                                { opacity: 1, y: 0, duration: 0.45, stagger: 0.04, ease: 'power2.out', onComplete: () => {
+                                { opacity: 1, y: 0, duration: 0.5, stagger: 0.04, ease: 'power2.out', onComplete: () => {
                                     if (typeof ScrollTrigger !== 'undefined') {
                                         ScrollTrigger.refresh();
                                     }
@@ -339,10 +309,11 @@
                     if (initial) {
                         doRender();
                     } else if (typeof gsap !== 'undefined') {
-                        gsap.to('.services__grid .menu__row', {
+                        // Stagger-fade out
+                        gsap.to('#servicesMenu > li', {
                             opacity: 0,
                             y: -10,
-                            duration: 0.2,
+                            duration: 0.25,
                             stagger: 0.02,
                             ease: 'power2.in',
                             onComplete: doRender
@@ -352,24 +323,20 @@
                     }
                 };
                 
-                // Add tab button click event listener
-                if (tabsContainer) {
-                    tabsContainer.addEventListener('click', (e) => {
-                        const btn = e.target.closest('.services__tab-btn');
-                        if (!btn || btn.classList.contains('active')) return;
-                        
-                        document.querySelectorAll('.services__tab-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        
-                        const cat = btn.getAttribute('data-category');
-                        renderCategoryServices(cat);
-                    });
-                }
+                // Add click listener
+                genderToggle.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.gender-btn');
+                    if (!btn || btn.classList.contains('active')) return;
+                    
+                    genderToggle.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const gender = btn.getAttribute('data-gender');
+                    renderGenderMenu(gender);
+                });
                 
-                // Default initial render
-                if (categories.length > 0) {
-                    renderCategoryServices(categories[0], true);
-                }
+                // Initial load default to female (Women's Couture)
+                renderGenderMenu('female', true);
             }
         } catch (e) {
             console.error('Error applying salon data:', e);
