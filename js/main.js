@@ -228,20 +228,42 @@
                 });
             }
 
-            // 3. Build Services Menu
-            const menuContainer = document.querySelector('.menu');
-            if (menuContainer && data.services && data.services.length > 0) {
-                menuContainer.innerHTML = '';
+            // 3. Build Services Menu (Split Columns)
+            const femaleMenu = document.querySelector('.menu--female');
+            const maleMenu = document.querySelector('.menu--male');
+            
+            if (femaleMenu && maleMenu && data.services) {
+                femaleMenu.innerHTML = '';
+                maleMenu.innerHTML = '';
+                
+                let femaleCount = 1;
+                let maleCount = 1;
+                
                 data.services.forEach(service => {
                     const li = document.createElement('li');
                     li.className = 'menu__row reveal-row';
-                    li.innerHTML = `
-                        <span class="menu__num">${service.num}</span>
-                        <h3 class="menu__name">${service.name}</h3>
-                        <p class="menu__desc">${service.desc}</p>
-                        <span class="menu__price">${service.price}</span>
-                    `;
-                    menuContainer.appendChild(li);
+                    
+                    const gender = service.gender ? service.gender.toLowerCase() : 'female';
+                    
+                    if (gender === 'male') {
+                        const numStr = String(maleCount++).padStart(2, '0');
+                        li.innerHTML = `
+                            <span class="menu__num">${numStr}</span>
+                            <h3 class="menu__name">${service.name}</h3>
+                            <p class="menu__desc">${service.desc}</p>
+                            <span class="menu__price">${service.price}</span>
+                        `;
+                        maleMenu.appendChild(li);
+                    } else {
+                        const numStr = String(femaleCount++).padStart(2, '0');
+                        li.innerHTML = `
+                            <span class="menu__num">${numStr}</span>
+                            <h3 class="menu__name">${service.name}</h3>
+                            <p class="menu__desc">${service.desc}</p>
+                            <span class="menu__price">${service.price}</span>
+                        `;
+                        femaleMenu.appendChild(li);
+                    }
                 });
             }
         } catch (e) {

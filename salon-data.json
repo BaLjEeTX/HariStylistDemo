@@ -48,37 +48,57 @@
       "num": "01",
       "name": "Hair Couture",
       "desc": "Precision cuts · balayage · keratin · scalp & strand rituals.",
-      "price": "from <em>₹899</em>"
+      "price": "from <em>₹899</em>",
+      "gender": "female"
     },
     {
       "num": "02",
       "name": "Skin & Glow",
       "desc": "Bespoke facials · D-tan · brightening · hydra-glow rituals.",
-      "price": "from <em>₹699</em>"
+      "price": "from <em>₹699</em>",
+      "gender": "female"
     },
     {
       "num": "03",
       "name": "Nail Artistry",
       "desc": "Luxury mani & pedi · gel · chrome · editorial nail couture.",
-      "price": "from <em>₹499</em>"
+      "price": "from <em>₹499</em>",
+      "gender": "female"
     },
     {
       "num": "04",
       "name": "Bridal & Occasion",
       "desc": "Curated bridal packages · hair, skin & editorial makeup.",
-      "price": "on <em>request</em>"
+      "price": "on <em>request</em>",
+      "gender": "female"
     },
     {
       "num": "05",
       "name": "Body Rituals",
       "desc": "Full body wax · polishing therapies · silken finish.",
-      "price": "from <em>₹999</em>"
+      "price": "from <em>₹999</em>",
+      "gender": "female"
     },
     {
-      "num": "06",
+      "num": "01",
       "name": "Grooming for Men",
       "desc": "Classic cuts · beard sculpting · clean-up & styling.",
-      "price": "from <em>₹599</em>"
+      "price": "from <em>₹599</em>",
+      "gender": "male"
+    },
+    {
+      "num": "02",
+      "name": "Beard Sculpting",
+      "desc": "Hot towel shave · precise razor line contours · beard oil massage.",
+      "price": "from <em>₹299</em>",
+      "gender": "male"
+    },
+    {
+      "num": "03",
+      "name": "Men's Skin Detox",
+      "desc": "Hydrating clean-up · charcoal peeling · under-eye recovery.",
+      "price": "from <em>₹699</em>",
+      "gender": "male"
     }
   ]
 }
