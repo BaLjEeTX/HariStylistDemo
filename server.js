@@ -55,7 +55,8 @@ const server = http.createServer((req, res) => {
                         name: service.name.trim(),
                         desc: service.desc.trim(),
                         price: service.price.trim(),
-                        gender: gender
+                        gender: gender,
+                        category: service.category ? service.category.trim().toLowerCase() : 'hair'
                     };
                 });
 

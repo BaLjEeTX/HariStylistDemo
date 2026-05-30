@@ -399,10 +399,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="serviceGender">Category / Gender</label>
+                            <label for="serviceGender">Gender Category</label>
                             <select id="serviceGender" required>
                                 <option value="female">Women's Couture (female)</option>
                                 <option value="male">Men's Grooming (male)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serviceCategory">Service Type / Tab</label>
+                            <select id="serviceCategory" required>
+                                <option value="hair">Hair Couture (hair)</option>
+                                <option value="skin">Skin &amp; Glow (skin)</option>
+                                <option value="nails">Nail Artistry (nails)</option>
+                                <option value="grooming">Grooming &amp; Body (grooming)</option>
                             </select>
                         </div>
 
@@ -447,6 +457,7 @@
 
             services.forEach((service, index) => {
                 const gender = service.gender ? service.gender.toLowerCase() : 'female';
+                const category = service.category ? service.category.toLowerCase() : 'hair';
                 const li = document.createElement('li');
                 li.className = 'menu-item';
                 
@@ -456,6 +467,7 @@
                         <div class="menu-item__name">
                             ${escapeHtml(service.name)} 
                             <span class="price-badge">${gender}</span>
+                            <span class="price-badge" style="background:var(--gold-500);color:var(--bg-color)">${escapeHtml(category)}</span>
                         </div>
                         <div class="menu-item__desc">${escapeHtml(service.desc)}</div>
                         <div class="menu-item__price">${service.price}</div>
@@ -497,9 +509,10 @@
             const desc = document.getElementById('serviceDesc').value;
             const price = document.getElementById('servicePrice').value;
             const gender = document.getElementById('serviceGender').value;
+            const category = document.getElementById('serviceCategory').value;
             const editIndexVal = document.getElementById('editIndex').value;
 
-            const serviceData = { name, desc, price, gender };
+            const serviceData = { name, desc, price, gender, category };
 
             if (editIndexVal !== '') {
                 // Update
@@ -524,6 +537,7 @@
             document.getElementById('serviceDesc').value = service.desc;
             document.getElementById('servicePrice').value = service.price;
             document.getElementById('serviceGender').value = service.gender || 'female';
+            document.getElementById('serviceCategory').value = service.category || 'hair';
             document.getElementById('editIndex').value = index;
 
             document.getElementById('formTitle').textContent = 'Edit Service';
